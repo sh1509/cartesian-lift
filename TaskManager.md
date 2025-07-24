@@ -4,6 +4,9 @@
 
 This project involves simulating and controlling Cartesian motions of a 6-DOF robotic arm mounted on a vertical prismatic joint (lift) using ROS 2 and Ignition Gazebo. It includes velocity-controlled motion, trajectory generation, and optional compliance control.
 
+__Notes__ \
+I will also be working on my current office work, so following this time schedule exactly is not completely possible, but I will try my best.
+
 ---
 
 ## Environment Setup (Hours 0–2)
