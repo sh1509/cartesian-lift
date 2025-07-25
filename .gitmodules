@@ -1,0 +1,4 @@
+[submodule "external/Universal_Robots_ROS2_Description"]
+	path = external/Universal_Robots_ROS2_Description
+	url = https://github.com/UniversalRobots/Universal_Robots_ROS2_Description.git
+	branch = humble
