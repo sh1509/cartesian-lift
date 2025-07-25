@@ -30,19 +30,30 @@ I will also be working on my current office work, so following this time schedul
 | Loaded with prismatic link    | ✅ Completed     | 25/07 16:05         |
 
 
-## TODO
+## EXTRA TODO
 - ~~ADD Universal_Robots_ROS2_Description as submodules~~
 - ~~Add the steps for running the launch files related to Gazebo~~
 
 ---
 
-  ## Phase 1: Robot Model & Simulation (Hours 2–8)
+## Phase 1: Robot Model & Simulation (Hours 2–8)
 
   ### Deliverables:
 
   * [ ] Modified URDF: 6-DOF robot + vertical prismatic joint
   * [ ] Simulation world with robot spawned in Ignition Gazebo
 * [ ] Basic Cartesian motion at fixed Z using trapezoidal profile
+
+## Progress Log
+
+| Task                          | Status          | Timestamp            |
+|-------------------------------|------------------|---------------------|
+| Start time                    | Started          | 25/07 17:00         |
+| Modified URDF                 | ✅ Completed     | 25/07 17:20         |
+| Spawned Model                 | ✅ Completed     | 25/07 17:20         |
+
+## EXTRA TODO
+- ~~create initial_positions.yaml for all the joints of the robot~~
 
 ### Tools:
 
