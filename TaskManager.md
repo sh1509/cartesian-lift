@@ -20,6 +20,10 @@ I will also be working on my current office work, so following this time schedul
 
 *  Humble/Foxy ROS 2 base image
 
+###
+Start time: 25/07 01:00 - 1:30
+Resumed: 25/07 09:30
+
 ---
 
 ## Phase 1: Robot Model & Simulation (Hours 2–8)
