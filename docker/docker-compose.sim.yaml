@@ -13,6 +13,7 @@ services:
       - LIBGL_ALWAYS_INDIRECT=0
       - ROS_DOMAIN_ID=0
       - GAZEBO_MODEL_PATH=/workspace/lift_ws/install/ur_description/share
+      - GAZEBO_PLUGIN_PATH=/opt/ros/humble/lib:/opt/ros/humble/share/gazebo_ros2_control
     volumes:
       - ~/cartesian-lift:/workspace/lift_ws/src/cartesian-lift
       - /tmp/.X11-unix:/tmp/.X11-unix:rw

@@ -13,7 +13,7 @@
    <xacro:arg name="kinematics_params" default="$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml"/>
    <xacro:arg name="physical_params" default="$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml"/>
    <xacro:arg name="visual_params" default="$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml"/>
-   <xacro:arg name="transmission_hw_interface" default=""/>
+   <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
    <xacro:arg name="safety_limits" default="false"/>
    <xacro:arg name="safety_pos_margin" default="0.15"/>
    <xacro:arg name="safety_k_position" default="20"/>
@@ -42,9 +42,9 @@
      <!-- Simulation parameters -->
    <xacro:arg name="use_fake_hardware" default="false" />
    <xacro:arg name="fake_sensor_commands" default="false" />
-   <xacro:arg name="sim_gazebo" default="false" />
+   <xacro:arg name="sim_gazebo" default="true" />
    <xacro:arg name="sim_ignition" default="false" />
-   <xacro:arg name="simulation_controllers" default="" />
+   <xacro:arg name="simulation_controllers" default="$(find my_ur10e_custom_description)/config/ur10e_controllers.yaml" />
 
    <!-- initial position for simulations (Fake Hardware, Gazebo, Ignition) -->
    <xacro:arg name="initial_positions_file" default="$(find my_ur10e_custom_description)/config/initial_positions.yaml"/>
@@ -111,7 +111,7 @@
    <joint name="lift_joint" type="prismatic">
      <parent link="world"/>
      <child link="lift_base"/>
-     <origin xyz="0 0 0.05" rpy="0 0 0"/>
+     <origin xyz="0 0 0.07" rpy="0 0 0"/>
      <axis xyz="0 0 1"/>  <!-- moves along Z axis -->
      <limit effort="1000.0" velocity="0.2" lower="0.0" upper="1.0"/>
    </joint>

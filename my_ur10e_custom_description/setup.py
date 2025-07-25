@@ -13,6 +13,7 @@ setup(
         ('share/' + package_name + '/launch', ['launch/spawn_ur10e.launch.py']),
         ('share/' + package_name + '/urdf', ['urdf/ur10e_with_prismatic.urdf.xacro']),
         ('share/' + package_name + '/config', ['config/initial_positions.yaml']),
+        ('share/' + package_name + '/config', ['config/ur10e_controllers.yaml']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
