@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
     ros-humble-gazebo-ros-pkgs \
     ros-humble-gazebo-ros2-control \
     ros-humble-joint-state-publisher-gui \
+    ros-humble-ros2-control \
+    ros-humble-ros2-controllers \
     ros-humble-ros-ign \
     ros-humble-xacro \
     ros-humble-rviz2 \

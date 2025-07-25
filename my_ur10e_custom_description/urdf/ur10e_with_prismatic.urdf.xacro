@@ -5,8 +5,6 @@
    <!-- import main macro -->
    <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
 
-   <!-- possible 'ur_type' values: ur3, ur3e, ur5, ur5e, ur7e, ur10, ur10e, ur12e, ur16e, ur15, ur20, ur30 -->
-   <!-- the default value should raise an error in case this was called without defining the type -->
    <xacro:arg name="ur_type" default="ur5x"/>
 
    <!-- parameters -->
@@ -15,7 +13,7 @@
    <xacro:arg name="kinematics_params" default="$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml"/>
    <xacro:arg name="physical_params" default="$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml"/>
    <xacro:arg name="visual_params" default="$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml"/>
-   <xacro:arg name="transmission_hw_interface" default=""/>
+   <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
    <xacro:arg name="safety_limits" default="false"/>
    <xacro:arg name="safety_pos_margin" default="0.15"/>
    <xacro:arg name="safety_k_position" default="20"/>
@@ -44,12 +42,12 @@
      <!-- Simulation parameters -->
    <xacro:arg name="use_fake_hardware" default="false" />
    <xacro:arg name="fake_sensor_commands" default="false" />
-   <xacro:arg name="sim_gazebo" default="false" />
+   <xacro:arg name="sim_gazebo" default="true" />
    <xacro:arg name="sim_ignition" default="false" />
-   <xacro:arg name="simulation_controllers" default="" />
+   <xacro:arg name="simulation_controllers" default="$(find my_ur10e_custom_description)/config/ur10e_controllers.yaml" />
 
    <!-- initial position for simulations (Fake Hardware, Gazebo, Ignition) -->
-   <xacro:arg name="initial_positions_file" default="$(find ur_description)/config/initial_positions.yaml"/>
+   <xacro:arg name="initial_positions_file" default="$(find my_ur10e_custom_description)/config/initial_positions.yaml"/>
 
    <!-- convert to property to use substitution in function -->
    <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
@@ -86,41 +84,38 @@
    </xacro:if>
 
    <!-- PRISMATIC joint with new base link -->
-   <link name="lift_base"/>
+   <link name="lift_base">
+    <visual>
+      <geometry>
+        <box size="0.4 0.4 0.05"/>
+      </geometry>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.4 0.4 0.05"/>
+      </geometry>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="2.0"/>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+   </link>
+
 
    <joint name="lift_joint" type="prismatic">
      <parent link="world"/>
      <child link="lift_base"/>
-     <origin xyz="0 0 0" rpy="0 0 0"/>
+     <origin xyz="0 0 0.07" rpy="0 0 0"/>
      <axis xyz="0 0 1"/>  <!-- moves along Z axis -->
      <limit effort="1000.0" velocity="0.2" lower="0.0" upper="1.0"/>
    </joint>
-
-   <xacro:if value="${is_sim_gazebo or is_sim_ignition}">
-     <link name="ground_plane">
-       <visual>
-         <origin rpy="0 0 0" xyz="0 0 0"/>
-         <geometry>
-           <box size="5 5 0"/>
-         </geometry>
-         <material name="ground_white">
-           <color rgba="1 1 1 0.5"/>
-         </material>
-       </visual>
-       <collision>
-         <origin rpy="0 0 0" xyz="0 0 0"/>
-         <geometry>
-           <box size="5 5 0"/>
-         </geometry>
-       </collision>
-     </link>
-
-     <joint name="ground_plane_joint" type="fixed">
-       <origin xyz="0 0 -0.01" rpy="0 0 0"/>
-       <parent link="world"/>
-       <child link="ground_plane"/>
-     </joint>
-   </xacro:if>
+   
 
    <!-- arm -->
    <xacro:ur_robot
@@ -160,7 +155,7 @@
      script_sender_port="$(arg script_sender_port)"
      trajectory_port="$(arg trajectory_port)"
      >
-     <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
+     <origin xyz="0 0 0.05" rpy="0 0 0" />          <!-- position robot in the world -->
    </xacro:ur_robot>
 
    <xacro:if value="$(arg sim_gazebo)">

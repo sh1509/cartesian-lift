@@ -22,21 +22,21 @@ I will also be working on my current office work, so following this time schedul
 
 ## Progress Log
 
-| Task                          | Status          | Timestamp            |
-|-------------------------------|------------------|---------------------|
-| Start time                    | Started          | 25/07 01:00 - 01:30 |
-| Resumed work                  | -----------      | 25/07 09:30         |
-| URDF preparation              | ✅ Completed     | 25/07 12:18         |
-| Loaded with prismatic link    | ✅ Completed     | 25/07 16:05         |
+| Task                          | Status           | Timestamp           |  Notes |
+|-------------------------------|------------------|---------------------|--------|
+| Start time                    | Started          | 25/07 01:00 - 01:30 |        |
+| Resumed work                  | -----------      | 25/07 09:30         |        |
+| URDF preparation              | ✅ Completed     | 25/07 12:18         |Custom URDF|
+| Loaded with prismatic link    | ✅ Completed     | 25/07 16:05         |Time occurred in order to undertand the xacros for UR10E|
 
 
-## TODO
+## EXTRA TODO
 - ~~ADD Universal_Robots_ROS2_Description as submodules~~
 - ~~Add the steps for running the launch files related to Gazebo~~
 
 ---
 
-  ## Phase 1: Robot Model & Simulation (Hours 2–8)
+## Phase 1: Robot Model & Simulation (Hours 2–8)
 
   ### Deliverables:
 
@@ -44,9 +44,28 @@ I will also be working on my current office work, so following this time schedul
   * [ ] Simulation world with robot spawned in Ignition Gazebo
 * [ ] Basic Cartesian motion at fixed Z using trapezoidal profile
 
+## Progress Log
+
+| Task                          | Status          | Timestamp            | Notes |
+|-------------------------------|------------------|---------------------|-------|
+| Start time                    | Started          | 25/07 17:00         |       |
+| Modified URDF                 | ✅ Completed     | 25/07 17:20         |Gazebo in docker failed to launch|
+| Spawned Model                 | ✅ Completed     | 25/07 17:20         |       |
+| Hardware Transmission         | Paused           | 25/07 19:10         |  gazebo_ros2_control plugin fails |
+| Hardware Transmission         | Resumed          | 25/07 19:35         |  gazebo_ros2_control plugin fails |
+| Fixed Transmission            | ✅ Completed     | 25/07 23:35         |  issues with xacros transmission and controllers.yaml |
+
+
+## EXTRA TODO
+- ~~create initial_positions.yaml for all the joints of the robot~~
+-  ~~Add `apt install ros-humble-ros2-control ros-humble-ros2-controllers` in dependencies and installation~~
+-  launch rviz with Gazebo (LATER)
+-  ~~Add GAZEBO_PLUGIN_PATH=/opt/ros/humble/lib:/opt/ros/humble/share/gazebo_ros2_control in docker compose~~
+-  Add all the modified xacros of ur_description (LATER)
+
 ### Tools:
 
-* xacro, RViz, Ignition Gazebo, `ros2 launch`
+* xacro, RViz
 
 ---
 
