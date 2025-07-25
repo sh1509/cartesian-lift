@@ -9,18 +9,15 @@ This project involves simulating and controlling Cartesian motions of a 6-DOF ro
 ### 1. Build the Docker image
 
 ```bash
-docker build -t ros2-ignition:humble-citadel .
+$ cd docker
+$ docker compose -f docker-compose.sim.yaml build
 ```
 
-### 2. Run the Docker container with volume mounting
+### 2. Run the Docker container
 
 ```bash
-docker run -it --rm \
-  --net=host \
-  -v ~/ros2_ws:/workspace \
-  -e DISPLAY=$DISPLAY \
-  -v /tmp/.X11-unix:/tmp/.X11-unix \
-  ros2-ignition:humble-citadel
+cd docker
+$ docker compose -f docker-compose.sim.yaml up
 ```
 
 ---
@@ -28,7 +25,45 @@ docker run -it --rm \
 ### Notes
 
 * Before running the container, run `xhost +local:root` on your host to allow GUI forwarding.
-* Adjust the volume path `~/ros2_ws` to point to your actual ROS 2 workspace directory.
 * This setup assumes you are running on a Linux host with X11. For Windows or Mac, additional configuration may be required.
 
 ---
+
+## Dependencies
+
+This project depends on the following:
+
+* **Universal\_Robots\_ROS2\_Description**
+  Included as a git submodule under the `external/` directory.
+  To initialize and update it:
+
+  ```bash
+  git submodule update --init --recursive
+  ```
+
+* **ROS 2 Humble** with the following packages:
+
+  * `gazebo_ros_pkgs`
+  * `gazebo_ros2_control`
+  * `ros_ign`
+  * `xacro`
+  * `rviz2`
+  * `joint_state_publisher_gui`
+
+* **Gazebo Fortress (Ignition Gazebo)**
+  Installed via OSRF APT repository:
+
+  ```Dockerfile
+  curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" > /etc/apt/sources.list.d/gazebo-stable.list
+  apt-get update && apt-get install -y ignition-fortress
+  ```
+
+* **Python packages**
+
+  * `matplotlib` (for plotting velocities etc.)
+
+> All dependencies are installed in the provided Dockerfile.
+
+---
+
