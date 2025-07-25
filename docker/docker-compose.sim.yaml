@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  ros2_ignition:
+    container_name: cartesian-lift
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ros2-ignition:humble
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - LIBGL_ALWAYS_INDIRECT=0
+      - ROS_DOMAIN_ID=0
+      - GAZEBO_MODEL_PATH=/workspace/lift_ws/install/ur_description/share
+    volumes:
+      - ~/cartesian-lift:/workspace/lift_ws/src/cartesian-lift
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    working_dir: /workspace/lift_ws
+    stdin_open: true
+    tty: true
+    privileged: true
+    network_mode: host
+    command: >
+      bash -c "
+        source /opt/ros/humble/setup.bash &&
+        colcon build --symlink-install &&
+        source install/setup.bash &&
+        ros2 launch my_ur10e_custom_description spawn_ur10e.launch.py
+      "
