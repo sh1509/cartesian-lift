@@ -160,7 +160,9 @@ Figure 1: End-effector velocities over time
   _End-effector moves along waypoints in XY, lift adjusts Z._
 
 - [x] **It should follow a series of waypoints, while adjusting the lift if necessary**  
-  _Implemented dynamic IK solution using `ikpy` and lift adjustment logic._
+  _Implemented custom dynamic IK solution and lift adjustment logic._
+
+  __TODO__ Fix the Inverse kinematics solution through testing.
 
 - [x] **Plot end-effector velocities and joint velocities**  
   _Velocities plotted using `matplotlib` and saved for analysis._
