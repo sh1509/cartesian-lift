@@ -133,14 +133,15 @@ The URDF has been modified to include a vertical prismatic joint for the lift. T
     ```
 5. **Run the Docker container**:
     ```bash
-    docker compose -f docker-compose.sim.yaml run --rm --name cartesian-lift-sim bash
+    docker compose -f docker-compose.sim.yaml run --rm --name cartesian-lift-sim ros2_ignition bash
+    colcon build --symlink-install
+    source install/setup.bash
     ```
 6. **Access the ROS 2 environment**:
 
     ```bash
     docker exec -it cartesian-lift-sim bash
     ```
-   Replace `<container_name>` with the name of your running Docker container.
 7. **Run the Gazebo simulation and Rviz**:
     ```bash
     $ ros2 launch my_ur10e_custom_description spawn_ur10e.launch.py
