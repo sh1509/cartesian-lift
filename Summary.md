@@ -6,10 +6,12 @@ It outlines the deliverables for each phase, the progress log, and the structure
 ## Project Overview
 The cartesian-lift project aims to simulate and control a 6-DOF robotic arm with a vertical lift joint using ROS 2 and Ignition Gazebo. The project is structured into several phases, each with specific deliverables and tasks. The project also includes a task management system to track progress and deliverables.
 
+__note:__ More detail on the project is written in the README.md
+
 
 ## Project Phases
 
-## Environment Setup
+## Phase 0: Environment Setup
 
 ### Deliverables:
 
@@ -109,11 +111,14 @@ Although while testing the IK solver, numerically the joint angles generated wer
 ## constant-velocity Cartesian motion
 The constant-velocity Cartesian motion is implemented using a trapezoidal velocity profile. The motion is controlled by a ROS 2 node that generates the desired trajectory based on the IK solutions. The node takes the desired end-effector position and orientation as input and generates a trajectory that moves the end-effector smoothly to the target position while maintaining a constant velocity. This can be shown in the following video:
 
-[![Constant Velocity Cartesian Motion](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+[![Constant Velocity Cartesian Motion](plots/output.gif)]
 
 __note:__ 
 
 As you can seein the video, the end effector moves smoothly to the target position while maintaining a constant velocity. The trajectory is generated using a trapezoidal velocity profile, which ensures that the end effector accelerates and decelerates smoothly, avoiding any sudden changes in velocity. The motion is controlled by a ROS 2 node that generates the desired trajectory based on the IK solutions. However the end effector does not reach the desired position, which could be due to the reasons mentioned above. The constant-velocity Cartesian motion is a crucial part of the project, as it allows for smooth and controlled motion of the robotic arm in the XY plane at different Z heights.
+
+__note_note:__ Sorry for the poor quality of the video as time was running out \
+and Ubuntu was not able to record display.
 
 ## Phase 3: Data Logging & Visualization
 
