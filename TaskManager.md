@@ -63,10 +63,6 @@ I will also be working on my current office work, so following this time schedul
 -  ~~Add GAZEBO_PLUGIN_PATH=/opt/ros/humble/lib:/opt/ros/humble/share/gazebo_ros2_control in docker compose~~
 -  Add all the modified xacros of ur_description (LATER)
 
-### Tools:
-
-* xacro, RViz
-
 ---
 
 ## Phase 2: Z-Lift Control (Hours 8–16)
@@ -76,6 +72,23 @@ I will also be working on my current office work, so following this time schedul
 * [ ] Prismatic joint integrated into motion planning
 * [ ] Cartesian motion on 2D plane (XY) at different Z heights
 * [ ] Trajectory manager that includes Z control via trapezoidal profile
+
+## Progress Log
+
+| Task                          | Status          | Timestamp            | Notes |
+|-------------------------------|------------------|---------------------|-------|
+| Start time                    | Started          | 25/07 23:55         |       |
+| Create control_pkg for motion | In-progress      | 26/07               | Use IKSolver for trajectory generation with added lift|
+| trac_ik                       | Aborted          | 26/07  02:35        | No native support for ROS2, tried compiling by source but failed, plus no gurantee that the code will work with added lift|
+| IK with lift                  | Started          | 26/07  10:16        |       |
+| IK with lift                  | ✅ Completed          | 26/07  13:25        | created a module for generating IK solution with extra added lift, added a ros2 node for running cartesian motion without constant velocity      |
+| Implement constant velocity motion| Started          | 26/07  13:25        |       |
+| Implement constant velocity motion| ✅ Completed          | 26/07  17:20        |       |
+
+
+## Extra TODO
+- ~~Add ikpy, numpy, scipy in Dockerfile: pip install ikpy urdf-parser-py numpy~~
+- ~~Add ur10e_without_lift.urdf to git~~
 
 
 ---
@@ -104,7 +117,7 @@ I will also be working on my current office work, so following this time schedul
 
 ---
 
-## Phase 5: Code Cleanup & Documentation (Hours 36–46)
+## Phase 5: Code Cleanup & Documentation (Hours 44–46)
 
 ### Deliverables:
 
@@ -137,7 +150,7 @@ I will also be working on my current office work, so following this time schedul
 | Phase 2   | Lift control (Z motion)     | 8 hrs         |
 | Phase 3   | Plotting & verification     | 8 hrs         |
 | Phase 4   | Compliance control (bonus)  | 12 hrs        |
-| Phase 5   | Cleanup + docs              | 10 hrs        |
+| Phase 5   | Cleanup + docs              | 2 hrs         |
 | Phase 6   | Testing + deliverables      | 2 hrs         |
 
 ---

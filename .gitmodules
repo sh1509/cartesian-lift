@@ -2,6 +2,3 @@
 	path = external/Universal_Robots_ROS2_Description
 	url = https://github.com/UniversalRobots/Universal_Robots_ROS2_Description.git
 	branch = humble
-[submodule "external/trac_ik_ros2"]
-	path = external/trac_ik_ros2
-	url = https://github.com/aprotyas/trac_ik.git
