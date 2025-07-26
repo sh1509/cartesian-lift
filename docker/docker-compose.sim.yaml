@@ -17,6 +17,7 @@ services:
     volumes:
       - ~/cartesian-lift:/workspace/lift_ws/src/cartesian-lift
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /run/user/1000/gdm/Xauthority:/root/.Xauthority:rw
     working_dir: /workspace/lift_ws
     stdin_open: true
     tty: true

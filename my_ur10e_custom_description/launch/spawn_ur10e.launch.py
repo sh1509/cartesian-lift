@@ -1,7 +1,7 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import ExecuteProcess, TimerAction
-from launch.substitutions import Command, PathJoinSubstitution
+from launch.substitutions import Command, PathJoinSubstitution, TextSubstitution
 from launch_ros.substitutions import FindPackageShare
 
 
@@ -26,6 +26,13 @@ def generate_launch_description():
     return LaunchDescription([
         ExecuteProcess(
             cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
+            output='screen'
+        ),
+
+        Node(
+            package=pkg_name,
+            executable='wall_marker_publisher',
+            name='wall_marker_publisher',
             output='screen'
         ),
 
@@ -73,7 +80,7 @@ def generate_launch_description():
                 Node(
                     package='controller_manager',
                     executable='spawner',
-                    arguments=['forward_position_controller'],
+                    arguments=['joint_trajectory_controller'],
                     output='screen'
                 )
             ]
@@ -94,5 +101,45 @@ def generate_launch_description():
                     output='screen'
                 )
             ]
+        ),
+        TimerAction(
+            period=8.0,
+            actions=[
+                Node(
+                    package='gazebo_ros',
+                    executable='spawn_entity.py',
+                    arguments=[
+                        '-file',
+                        PathJoinSubstitution([
+                            FindPackageShare(pkg_name),
+                            'models',
+                            'wall',
+                            'wall.sdf'
+                        ]),
+                        '-entity', 'wall',
+                        '-x', '0.3', '-y', '0.0', '-z', '0.0'
+                    ],
+                    output='screen'
+                )
+            ]
+        ),
+
+        TimerAction(
+            period=10.0,
+            actions=[
+                Node(
+                    package='rviz2',
+                    executable='rviz2',
+                    name='rviz2',
+                    output='screen',
+                    arguments=['-d', PathJoinSubstitution([
+                        FindPackageShare(pkg_name),
+                        'config',
+                        'ur10e.rviz'
+                    ])],
+                    parameters=[{'robot_description': robot_description}]
+                )
+            ]
         )
+
     ])

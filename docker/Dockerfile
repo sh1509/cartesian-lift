@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     gnupg2 \
     lsb-release \
-    software-properties-common
+    software-properties-common \
+    wget
 
 # Add Gazebo (Fortress) key and repository
 RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
@@ -25,6 +26,12 @@ RUN apt-get update && apt-get install -y \
     python3-pip && \
     pip3 install matplotlib && \
     rm -rf /var/lib/apt/lists/*
+
+# Install additional Python dependencies
+RUN pip3 install \
+    numpy \
+    scipy \
+    ikpy 
 
 # Set up environment
 ENV LANG=C.UTF-8 \
