@@ -102,6 +102,12 @@ I will also be working on my current office work, so following this time schedul
   * [ ] Joint velocities
 * [ ] Visual confirmation of smooth motion (RViz or Gazebo screenshots)
 
+## Progress Log
+
+| Task                          | Status          | Timestamp            | Notes |
+|-------------------------------|------------------|---------------------|-------|
+| Plot the end-effector velocities| ✅ Completed          | 26/07  18:45        |       |
+
 ### Tools:
 
 * rqt\_plot, matplotlib, rosbag (optional)
@@ -109,7 +115,7 @@ I will also be working on my current office work, so following this time schedul
 ---
 
 ## Phase 4: Bonus Addition – Compliance Control (Hours 24–36)
-
+__Note: This is an optional phase that can be skipped if time does not permit.__
 ### Deliverables:
 
 * [ ] Custom node for compliance control
